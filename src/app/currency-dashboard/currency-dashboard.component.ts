@@ -1,5 +1,5 @@
 import {Component, ChangeDetectionStrategy} from '@angular/core';
-import {Tabs} from "../../core/models";
+import {Tab} from "../../core/models";
 
 @Component({
   selector: 'app-currency-dashboard',
@@ -8,7 +8,7 @@ import {Tabs} from "../../core/models";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CurrencyDashboardComponent {
-  tabs: Tabs[] = [
+  tabs: Tab[] = [
     {
       name: 'Currency Converter',
       routePath: 'converter'
@@ -22,7 +22,7 @@ export class CurrencyDashboardComponent {
   constructor() {
   }
 
-  trackByFunc(index: number, item: Record<string, any>) {
+  trackByIndex(index: number, item: Tab) {
     return index;
   }
 

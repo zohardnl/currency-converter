@@ -23,7 +23,7 @@
 </div>
 
 <ng-template #options>
-  <ng-container *ngFor="let code of currenciesCode;trackBy:trackByFunc">
+  <ng-container *ngFor="let code of currenciesCode;trackBy:trackByIndex">
     <option [value]="code">{{code}}</option>
   </ng-container>
 </ng-template>

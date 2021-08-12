@@ -1,4 +1,4 @@
-export interface Tabs {
+export interface Tab {
   name: string;
   routePath: string;
 }

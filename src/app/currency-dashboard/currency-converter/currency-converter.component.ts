@@ -91,7 +91,7 @@ export class CurrencyConverterComponent implements OnInit, AfterViewInit {
     return `${fromAmount} = ${toAmount}`;
   }
 
-  trackByFunc(index: number, item: Record<string, any>) {
+  trackByIndex(index: number, item: string) {
     return index;
   }
 }

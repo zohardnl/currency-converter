@@ -1,13 +1,11 @@
 import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
 import {CurrencyHistoryLogsComponent} from "./currency-history-logs.component";
+import {CurrencyHistoryLogsRoutingModule} from "./currency-history-logs-routing.module";
 
 
 @NgModule({
   declarations: [CurrencyHistoryLogsComponent],
-  imports: [
-    CommonModule
-  ],
+  imports:[CurrencyHistoryLogsRoutingModule],
   exports: [CurrencyHistoryLogsComponent]
 })
 export class CurrencyHistoryLogsModule {

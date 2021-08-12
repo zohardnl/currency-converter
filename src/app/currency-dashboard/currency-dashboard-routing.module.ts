@@ -1,7 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from "@angular/router";
 import {CurrencyConverterComponent} from "./currency-converter/currency-converter.component";
-import {CurrencyHistoryLogsComponent} from "../../ui/currency-history-logs/currency-history-logs.component";
 import {CurrencyDashboardComponent} from "./currency-dashboard.component";
 
 const routes: Routes = [
@@ -20,7 +19,7 @@ const routes: Routes = [
       },
       {
         path: 'history',
-        component: CurrencyHistoryLogsComponent
+        loadChildren: () => import('../../ui/currency-history-logs/currency-history-logs.module').then(m => m.CurrencyHistoryLogsModule)
       }
     ]
   }

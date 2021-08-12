@@ -4,7 +4,9 @@ import {Observable} from "rxjs";
 import {environment} from "../../environments/environment";
 import {ConversionRate} from "../models";
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class CurrencyConverterService {
   private _currenciesCode: string[] = [
     'ILS',
