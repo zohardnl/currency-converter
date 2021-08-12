@@ -1,0 +1,29 @@
+<div class="currency-converter" fxLayout="column">
+  <div class="currency-converter__container" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="2rem">
+    <h2>Currency Converter</h2>
+
+    <form [formGroup]="formGroup" class="currency-converter__form">
+      <div fxLayout="row" fxLayoutGap="1rem" class="currency-converter__form__fields">
+        <input type="number" formControlName="amount">
+
+        <label for="from">From:</label>
+        <select name="from" id="from" formControlName="from">
+          <ng-container *ngTemplateOutlet="options"></ng-container>
+        </select>
+
+        <label for="to">To:</label>
+        <select name="to" id="to" formControlName="to">
+          <ng-container *ngTemplateOutlet="options"></ng-container>
+        </select>
+      </div>
+    </form>
+
+    <app-conversion-info [convertText]="convertText"></app-conversion-info>
+  </div>
+</div>
+
+<ng-template #options>
+  <ng-container *ngFor="let code of currenciesCode;trackBy:trackByFunc">
+    <option [value]="code">{{code}}</option>
+  </ng-container>
+</ng-template>

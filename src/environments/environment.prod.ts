@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  exchangeUrl:'https://api.frankfurter.app/latest'
 };

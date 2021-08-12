@@ -1,0 +1,18 @@
+@import "../../styles/variables";
+
+.currency-converter{
+  &__navigator {
+    padding: 10px;
+    background-color: $primary-color;
+    height: 3%;
+
+    &__item {
+      color: white;
+      cursor: pointer;
+
+      &:hover{
+        color: #f3f3f3;
+      }
+    }
+  }
+}
