@@ -3,7 +3,7 @@
     <h2>Currency Converter</h2>
 
     <form [formGroup]="formGroup" class="currency-converter__form">
-      <div fxLayout="row" fxLayoutGap="1rem" class="currency-converter__form__fields">
+      <div fxLayout="row" fxLayoutGap="1rem" class="currency-converter__form__fields" fxLayout.xs="column">
         <input type="number" formControlName="amount">
 
         <label for="from">From:</label>
@@ -18,7 +18,9 @@
       </div>
     </form>
 
-    <app-conversion-info [convertText]="convertText"></app-conversion-info>
+    <div class="currency-converter__text">
+      <app-conversion-info [convertText]="convertText$ | async"></app-conversion-info>
+    </div>
   </div>
 </div>
 

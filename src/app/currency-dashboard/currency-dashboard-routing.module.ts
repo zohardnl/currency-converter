@@ -19,7 +19,7 @@ const routes: Routes = [
       },
       {
         path: 'history',
-        loadChildren: () => import('../../ui/currency-history-logs/currency-history-logs.module').then(m => m.CurrencyHistoryLogsModule)
+        loadChildren: () => import('../../ui/history-results/history-results.module').then(m => m.HistoryResultsModule)
       }
     ]
   }

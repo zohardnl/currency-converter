@@ -1,12 +1,12 @@
 import {NgModule} from "@angular/core";
 import {RouterModule, Routes} from "@angular/router";
-import {CurrencyHistoryLogsComponent} from "./currency-history-logs.component";
+import {HistoryResultsComponent} from "./history-results.component";
 
 const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    component: CurrencyHistoryLogsComponent
+    component: HistoryResultsComponent
   }
 ];
 
@@ -17,5 +17,5 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class CurrencyHistoryLogsRoutingModule {
+export class HistoryResultsRoutingModule {
 }

@@ -1,4 +1,4 @@
-import {Component, ChangeDetectionStrategy, AfterViewInit, OnInit} from '@angular/core';
+import {AfterViewInit, ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {CurrencyPipe} from "@angular/common";
 import {catchError, debounceTime, distinctUntilChanged, ignoreElements, switchMap, tap} from "rxjs/operators";
 import {EMPTY, Observable} from "rxjs";
@@ -25,13 +25,14 @@ export class CurrencyConverterComponent implements OnInit, AfterViewInit {
     to: new FormControl('ILS')
   });
 
-  convertText: string;
+  convertText$: Observable<string>;
 
   constructor(private currencyPipe: CurrencyPipe, private converterService: CurrencyConverterService) {
   }
 
   ngOnInit() {
     this.currenciesCode = this.converterService.currenciesCode;
+    this.convertText$ = this.converterService.convertedText$;
   }
 
   ngAfterViewInit() {
@@ -39,27 +40,28 @@ export class CurrencyConverterComponent implements OnInit, AfterViewInit {
   }
 
   registerValueChanges() {
-    this.formGroup.get('amount')?.valueChanges.pipe(
-      debounceTime(500),
+    this.formGroup.valueChanges.pipe(
+      debounceTime(800),
       distinctUntilChanged(),
-      switchMap((value: number) => {
-        return this.getConversionRateResults(value);
+      switchMap((formValue: Record<string, any>) => {
+        return this.getConversionRateResults(formValue.amount);
       }),
       untilDestroyed(this)
     ).subscribe();
   }
 
-  getConversionRateResults(value: number): Observable<never> | Observable<ConversionRate> {
+  getConversionRateResults(amount: number): Observable<never> | Observable<ConversionRate> {
     let resultObs$: Observable<never> | Observable<ConversionRate> = EMPTY.pipe(ignoreElements());
 
-    if (!value) {
-      this.convertText = '';
+    if (!amount) {
+      this.converterService.convertingText = '';
       return resultObs$;
     } else {
       const {from, to, amount} = this.formGroup.value;
 
       if (from === to) {
-        this.convertText = this.prepareConvertingText(amount, amount, from, to);
+        this.converterService.convertingText = this.prepareConvertingText(amount, amount, from, to);
+
         return resultObs$;
 
       } else {
@@ -71,10 +73,10 @@ export class CurrencyConverterComponent implements OnInit, AfterViewInit {
 
         resultObs$ = this.converterService.getConversionRate(this.params).pipe(
           tap((data: ConversionRate) => {
-            this.convertText = this.prepareConvertingText(amount, data.rates[to], from, to);
+            this.converterService.convertingText = this.prepareConvertingText(amount, data.rates[to], from, to);
           }),
           catchError(err => {
-            this.convertText = 'An error has occurred';
+            this.converterService.convertingText = 'An error has occurred';
             throw err;
           })
         );

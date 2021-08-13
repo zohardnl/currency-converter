@@ -1,4 +1,4 @@
-import {Component, OnInit, ChangeDetectionStrategy, Input} from '@angular/core';
+import {Component, ChangeDetectionStrategy, Input} from '@angular/core';
 
 @Component({
   selector: 'app-conversion-info',
@@ -6,12 +6,9 @@ import {Component, OnInit, ChangeDetectionStrategy, Input} from '@angular/core';
   styleUrls: ['./conversion-info.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ConversionInfoComponent implements OnInit {
-  @Input() convertText:string;
+export class ConversionInfoComponent {
+  @Input() convertText: string;
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor() {
   }
-
 }

@@ -1,10 +1,12 @@
-<div fxLayout="column" fxLayoutGap="1rem" fxFill>
-  <nav class="currency-converter__navigator">
+<div fxLayout="column" fxLayoutGap="1rem" fxFill class="currency-dashboard">
+  <nav class="currency-dashboard__navigator">
     <div fxLayoutAlign="start center" fxLayoutGap="2rem" fxFill>
-      <span class="currency-converter__navigator__item"
+      <span class="currency-dashboard__navigator__item"
             *ngFor="let tab of tabs;trackBy:trackByIndex" [routerLink]="tab.routePath">{{tab.name}}</span>
     </div>
   </nav>
 
-  <router-outlet></router-outlet>
+  <div class="currency-dashboard__view">
+    <router-outlet></router-outlet>
+  </div>
 </div>

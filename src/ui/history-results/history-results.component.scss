@@ -1,0 +1,12 @@
+.history-results {
+  &__list {
+    max-width: 60rem;
+    max-height: 90%;
+    width: 100%;
+    overflow: hidden auto;
+
+    &__item {
+      padding: 5px 0;
+    }
+  }
+}

@@ -1,0 +1,18 @@
+<div class="history-results" fxLayout="column" fxLayoutAlign="start center" fxFill>
+  <h2>Currency History</h2>
+
+  <!--For once async pipe usage-->
+  <ng-container *ngIf="(conversionHistory$ | async) as history">
+    <ng-container *ngIf="history?.length;else noResults">
+      <ul class="history-results__list">
+        <li *ngFor="let item of history" class="history-results__list__item">
+          <app-conversion-info [convertText]="item"></app-conversion-info>
+        </li>
+      </ul>
+    </ng-container>
+  </ng-container>
+</div>
+
+<ng-template #noResults>
+  <span>No Results</span>
+</ng-template>
