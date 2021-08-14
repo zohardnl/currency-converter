@@ -1,15 +1,12 @@
 <div class="history-results" fxLayout="column" fxLayoutAlign="start center" fxFill>
   <h2>Currency History</h2>
 
-  <!--For once async pipe usage-->
-  <ng-container *ngIf="(conversionHistory$ | async) as history">
-    <ng-container *ngIf="history?.length;else noResults">
-      <ul class="history-results__list">
-        <li *ngFor="let item of history;trackBy:trackByIndex" class="history-results__list__item">
-          <app-conversion-info [convertText]="item"></app-conversion-info>
-        </li>
-      </ul>
-    </ng-container>
+  <ng-container *ngIf="conversionHistory?.length;else noResults">
+    <ul class="history-results__list">
+      <li *ngFor="let text of conversionHistory;trackBy:trackByIndex" class="history-results__list__item">
+        <app-conversion-info [convertText]="text"></app-conversion-info>
+      </li>
+    </ul>
   </ng-container>
 </div>
 

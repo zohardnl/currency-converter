@@ -56,14 +56,12 @@ export class CurrencyConverterComponent implements OnInit, AfterViewInit {
 
     if (!amount) {
       this.converterService.convertingText = '';
-      return resultObs$;
 
     } else {
       const {from, to, amount} = this.formGroup.value;
 
       if (from === to) {
         this.converterService.convertingText = this.prepareConvertingText(amount, amount, from, to);
-        return resultObs$;
 
       } else {
         this._params = {
@@ -85,10 +83,10 @@ export class CurrencyConverterComponent implements OnInit, AfterViewInit {
             throw err;
           })
         );
-
-        return resultObs$;
       }
     }
+
+    return resultObs$;
   }
 
   prepareConvertingText(amountFrom: number, amountTo: number, fromCode: string, toCode: string): string {

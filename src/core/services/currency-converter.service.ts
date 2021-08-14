@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Observable, of, Subject} from "rxjs";
+import {Observable, Subject} from "rxjs";
 import {environment} from "../../environments/environment";
 import {ConversionRate} from "../models";
 
@@ -35,9 +35,8 @@ export class CurrencyConverterService {
     return this._convertingText.asObservable();
   }
 
-
-  get conversionHistory$(): Observable<string[]> {
-    return of(this._conversionHistory);
+  get conversionHistory(): string[] {
+    return this._conversionHistory;
   }
 
   set convertingText(val: string) {
@@ -64,5 +63,4 @@ export class CurrencyConverterService {
     this._conversionHistory.push(conversion);
     localStorage.setItem(this._storageKey, JSON.stringify(this._conversionHistory));
   }
-
 }
