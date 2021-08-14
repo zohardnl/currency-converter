@@ -18,4 +18,7 @@ export class HistoryResultsComponent implements OnInit {
     this.conversionHistory$ = this.converterService.conversionHistory$;
   }
 
+  trackByIndex(index: number, item: string) {
+    return index;
+  }
 }

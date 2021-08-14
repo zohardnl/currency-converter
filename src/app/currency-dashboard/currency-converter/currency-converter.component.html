@@ -18,8 +18,8 @@
       </div>
     </form>
 
-    <div class="currency-converter__text">
-      <app-conversion-info [convertText]="convertText$ | async"></app-conversion-info>
+    <div class="currency-converter__text" *ngIf="(convertText$ | async) as convertText">
+      <app-conversion-info [convertText]="convertText"></app-conversion-info>
     </div>
   </div>
 </div>

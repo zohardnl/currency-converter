@@ -8,7 +8,7 @@ import {ConversionRate} from "../models";
   providedIn: 'root'
 })
 export class CurrencyConverterService {
-  private _currenciesCode: string[] = [
+  private readonly _currenciesCode: string[] = [
     'ILS',
     'USD',
     'EUR',
@@ -23,7 +23,8 @@ export class CurrencyConverterService {
     'KRW',
     'RUB'
   ];
-  private _convertingText: Subject<string> = new Subject<string>();
+  private readonly _convertingText: Subject<string> = new Subject<string>();
+  private readonly _storageKey: string = 'history';
   private _conversionHistory: string[] = [];
 
   get currenciesCode(): string[] {
@@ -48,7 +49,7 @@ export class CurrencyConverterService {
   }
 
   constructor(private http: HttpClient) {
-    const history: string[] = JSON.parse(localStorage.getItem('history'));
+    const history: string[] = JSON.parse(localStorage.getItem(this._storageKey));
 
     if (history?.length) {
       this._conversionHistory = [...history];
@@ -61,7 +62,7 @@ export class CurrencyConverterService {
 
   addToHistory(conversion: string) {
     this._conversionHistory.push(conversion);
-    localStorage.setItem('history', JSON.stringify(this._conversionHistory));
+    localStorage.setItem(this._storageKey, JSON.stringify(this._conversionHistory));
   }
 
 }

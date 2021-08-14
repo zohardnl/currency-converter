@@ -8,8 +8,7 @@ import {CommonModule} from "@angular/common";
 
 @NgModule({
   declarations: [HistoryResultsComponent],
-  imports: [HistoryResultsRoutingModule, FlexModule, ConversionInfoModule, CommonModule],
-  exports: [HistoryResultsComponent]
+  imports: [HistoryResultsRoutingModule, FlexModule, ConversionInfoModule, CommonModule]
 })
 export class HistoryResultsModule {
 }

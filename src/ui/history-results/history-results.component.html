@@ -5,7 +5,7 @@
   <ng-container *ngIf="(conversionHistory$ | async) as history">
     <ng-container *ngIf="history?.length;else noResults">
       <ul class="history-results__list">
-        <li *ngFor="let item of history" class="history-results__list__item">
+        <li *ngFor="let item of history;trackBy:trackByIndex" class="history-results__list__item">
           <app-conversion-info [convertText]="item"></app-conversion-info>
         </li>
       </ul>
